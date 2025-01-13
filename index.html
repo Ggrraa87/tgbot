@@ -3,72 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Бот-Эзотерик</title>
-    <style>
-        /* Стили для карт и анимации */
-        .card {
-            width: 100px;
-            height: 150px;
-            margin: 10px;
-            display: inline-block;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-
-        .card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
-        }
-
-        .card-front {
-            /* Стиль для лицевой стороны */
-            background-color: #f0f0f0;
-        }
-
-        .card-back {
-            background-color: #fff;
-            transform: rotateY(180deg);
-        }
-
-        #selected-cards {
-            margin-top: 20px;
-        }
-
-        #continue-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            display: inline-block;
-            cursor: pointer;
-            background-color: #4183c4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        #continue-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS -->
 </head>
 <body>
     <h1>Выберите 3 карты</h1>
