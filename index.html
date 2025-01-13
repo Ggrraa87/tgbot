@@ -38,6 +38,11 @@
             border-radius: 8px;
         }
 
+        .card-front {
+            /* Стиль для лицевой стороны */
+            background-color: #f0f0f0;
+        }
+
         .card-back {
             background-color: #fff;
             transform: rotateY(180deg);
@@ -50,94 +55,33 @@
         #continue-button {
             margin-top: 20px;
             padding: 10px 20px;
-            display: none;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #4183c4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #continue-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <h1>Выберите 3 карты</h1>
     <div id="cards-container">
-        <!-- Пример карт -->
-        <div class="card" data-card="Семерка Жезлов">
-            <div class="card-inner">
-                <div class="card-front">🃏</div>
-                <div class="card-back">Семерка Жезлов</div>
-            </div>
-        </div>
-        <div class="card" data-card="Отшельник">
-            <div class="card-inner">
-                <div class="card-front">🃏</div>
-                <div class="card-back">Отшельник</div>
-            </div>
-        </div>
-        <div class="card" data-card="Восьмерка Мечей">
-            <div class="card-inner">
-                <div class="card-front">🃏</div>
-                <div class="card-back">Восьмерка Мечей</div>
-            </div>
-        </div>
-        <!-- Добавьте больше карт по необходимости -->
+        <!-- Карты будут динамически добавлены скриптом -->
     </div>
     <div id="selected-cards">
         <h2>Выбранные карты:</h2>
         <ul id="cards-list"></ul>
     </div>
-    <button id="continue-button">Продолжить</button>
+    <button id="continue-button" disabled>Продолжить</button>
 
-    <script>
-        const maxSelection = 3;
-        let selectedCards = [];
-
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                if (selectedCards.length >= maxSelection && !card.classList.contains('flipped')) {
-                    alert(`Вы можете выбрать только ${maxSelection} карты.`);
-                    return;
-                }
-                card.classList.toggle('flipped');
-                const cardName = card.getAttribute('data-card');
-                if (selectedCards.includes(cardName)) {
-                    selectedCards = selectedCards.filter(name => name !== cardName);
-                } else {
-                    selectedCards.push(cardName);
-                }
-                updateSelectedCards();
-                if (selectedCards.length === maxSelection) {
-                    document.getElementById('continue-button').style.display = 'block';
-                    // Отправка данных в бот
-                    sendDataToBot();
-                }
-            });
-        });
-
-        function updateSelectedCards() {
-            const list = document.getElementById('cards-list');
-            list.innerHTML = '';
-            selectedCards.forEach(card => {
-                const li = document.createElement('li');
-                li.textContent = card;
-                list.appendChild(li);
-            });
-        }
-
-        function sendDataToBot() {
-            // Используем Telegram Web Apps API для отправки данных обратно в бот
-            if (window.Telegram.WebApp) {
-                const data = {
-                    selected_cards: selectedCards
-                };
-                Telegram.WebApp.sendData(JSON.stringify(data));
-            }
-        }
-
-        document.getElementById('continue-button').addEventListener('click', () => {
-            window.Telegram.WebApp.close();
-        });
-
-        // Автоматическое закрытие через 15 секунд
-        setTimeout(() => {
-            window.Telegram.WebApp.close();
-        }, 150000);
-    </script>
+    <!-- Подключение внешнего скрипта -->
+    <script src="script.js"></script>
 </body>
 </html>
