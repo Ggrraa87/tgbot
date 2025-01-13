@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardInner.classList.add("card-inner");
 
         const front = document.createElement("img");
-        front.src = `images/front.png`; // Убедитесь, что файл front.png загружен
+        front.src = `images/front.jpg`; // Убедитесь, что файл front.png загружен
         front.alt = "Карта";
         front.classList.add("card-front");
 
