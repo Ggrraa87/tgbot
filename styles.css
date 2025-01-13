@@ -1,3 +1,9 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box; /* Добавлено для корректного расчета размеров */
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -29,6 +35,7 @@ body {
     height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
+    transform-origin: center center; /* Центр вращения */
 }
 
 .card.flipped .card-inner {
@@ -41,18 +48,27 @@ body {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 8px;
+    display: flex; /* Для центрирования содержимого */
+    align-items: center;
+    justify-content: center;
 }
 
 .card-front {
-    /* Стиль для лицевой стороны */
     background-color: #f0f0f0;
-    z-index: 2; /* Лицевая сторона сверху */
+    /* Удален z-index для избежания смещения */
 }
 
 .card-back {
     background-color: #fff;
     transform: rotateY(180deg);
-    z-index: 1; /* Обратная сторона ниже */
+    /* Удален z-index для избежания смещения */
+}
+
+.card-front img, .card-back img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover; /* Чтобы изображение заполняло весь контейнер без искажений */
 }
 
 #selected-cards {
