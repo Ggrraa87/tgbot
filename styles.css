@@ -20,29 +20,67 @@ body {
     border-radius: 8px;
     cursor: pointer;
     position: relative;
+    perspective: 1000px; /* Для правильной перспективы */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
-.card.flipped {
+.card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-.card img {
+.card-front, .card-back {
+    position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 8px;
 }
 
-.card .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotateY(180deg);
+.card-front {
+    /* Стиль для лицевой стороны */
+    background-color: #f0f0f0;
+    z-index: 2; /* Лицевая сторона сверху */
 }
 
-#submit-btn {
+.card-back {
+    background-color: #fff;
+    transform: rotateY(180deg);
+    z-index: 1; /* Обратная сторона ниже */
+}
+
+#selected-cards {
+    margin-top: 20px;
+}
+
+#cards-list {
+    list-style: none;
+    padding: 0;
+}
+
+#cards-list li {
+    margin: 5px 0;
+}
+
+#continue-button {
+    margin-top: 20px;
     padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #4183c4;
+    color: white;
+    border: none;
+    border-radius: 5px;
     font-size: 16px;
+}
+
+#continue-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
