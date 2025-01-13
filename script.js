@@ -16,7 +16,7 @@ let selectedCards = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("cards-container");
-    const submitBtn = document.getElementById("continue-button"); // Изменено на 'continue-button'
+    const submitBtn = document.getElementById("continue-button"); // Используем 'continue-button'
     submitBtn.disabled = true; // Изначально кнопка отключена
 
     cards.forEach((card, index) => {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardInner.classList.add("card-inner");
 
         const front = document.createElement("img");
-        front.src = `images/front.jpg`; // Убедитесь, что файл front.png загружен
+        front.src = `images/front.jpg`; // Исправлено на front.jpg
         front.alt = "Карта";
         front.classList.add("card-front");
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardElement.addEventListener("click", () => {
             if (!cardElement.classList.contains("flipped")) {
                 if (selectedCards.length >= 3) {
-                    alert(`Вы можете выбрать только 3 карты.`);
+                    alert("Вы можете выбрать только 3 карты.");
                     return;
                 }
                 cardElement.classList.add("flipped");
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 cardElement.classList.remove("flipped");
                 selectedCards = selectedCards.filter(name => name !== card);
-                submitBtn.disabled = true;
+                submitBtn.disabled = selectedCards.length < 3;
                 updateSelectedCards();
             }
         });
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Автоматическое закрытие через 15 секунд
     setTimeout(() => {
         window.Telegram.WebApp.close();
-    }, 15000);
+    }, 15000); // Исправлено на 15000 (15 секунд)
 });
 
 function updateSelectedCards() {
